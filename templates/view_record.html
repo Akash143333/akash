@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Records</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min,css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+
+</head>
+<body>
+           <div class="container">
+                 <div class="col-md-offset-1 col-md-10">
+                     <h2 class="page-header text-info text-center">View Record</h2>
+                      <table class="table table-bordered">
+                          <thead>
+                          <tr>
+                              <th>S.no</th>
+                              <th>Eid</th>
+                              <th>Name</th>
+                              <th>Gender</th>
+                              <th>Status</th>
+                              <th>Address</th>
+                              <th>Contact</th>
+                              <th>Mailid</th>
+                              <th>Update</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                              {% for res in data %}
+                              {% set i=loop.index %}
+                           <tr>
+                              <td>{{i}}</td>
+                              <td>{{res["Eid"]}}</td>
+                              <td>{{res["Name"]}}</td>
+                              <td>{{res["Gender"]}}</td>
+                              <td>{{res["Status"]}}</td>
+                              <td>{{res["Address"]}}</td>
+                              <td>{{res["Contact"]}}</td>
+                              <td>{{res["Mailid"]}}</td>
+                               <td style="text-align:center"><a href="{{url_for('update_record',id=res['Eid'])}}" class="btn btn-primary">Update</a></td>
+                               <td style="text-align:center"><a href="{{url_for('delete_record',id=res['Eid'])}}" class="btn btn-danger">Delete</a></td>
+                           </tr>
+                            {% endfor %}
+                          </tbody>
+                      </table>
+                     <div>
+                        <a href={{url_for('home')}} class="btn btn-warning pull-right">Home Page</a>
+                     </div>
+                 </div >
+           </div>
+
+</body>
+</html
